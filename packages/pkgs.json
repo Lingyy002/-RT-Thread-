@@ -1,0 +1,17 @@
+[
+ {
+  "path": "/packages/iot/at_device", 
+  "ver": "latest", 
+  "name": "AT_DEVICE"
+ }, 
+ {
+  "path": "/packages/tools/gps_rmc", 
+  "ver": "latest", 
+  "name": "GPS_RMC"
+ }, 
+ {
+  "path": "/packages/peripherals/rplidar", 
+  "ver": "latest", 
+  "name": "RPLIDAR"
+ }
+]
