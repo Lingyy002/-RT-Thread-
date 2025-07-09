@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>选择终点坐标</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        #map {
+            height: 90%;
+        }
+        #submit-btn {
+            width: 100%;
+            height: 60px;
+            font-size: 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=SUyVvcrWIk6ziYtLgvTdth1jUXnIrHjb"></script>
+</head>
+<body>
+    <div id="map"></div>
+
+    <!-- 隐藏的表单 -->
+    <form method="POST" action="/submit" id="coord-form">
+        <input type="hidden" name="lng" id="lng">
+        <input type="hidden" name="lat" id="lat">
+        <button type="submit" id="submit-btn">🚀 提交终点坐标</button>
+    </form>
+
+    <script>
+        var map = new BMap.Map("map");
+        var center = new BMap.Point(117.402505, 39.551545);
+        map.centerAndZoom(center, 17);
+        map.enableScrollWheelZoom(true);
+
+        var marker = null;
+
+        map.addEventListener("click", function (e) {
+            var point = e.point;
+            if (marker) {
+                map.removeOverlay(marker);
+            }
+            marker = new BMap.Marker(point);
+            map.addOverlay(marker);
+
+            // 更新隐藏字段
+            document.getElementById("lng").value = point.lng;
+            document.getElementById("lat").value = point.lat;
+
+            alert("已选择终点：\n经度：" + point.lng + "\n纬度：" + point.lat);
+        });
+    </script>
+</body>
+</html>
+
